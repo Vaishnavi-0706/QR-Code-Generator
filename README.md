@@ -2,24 +2,38 @@
 
 
 import qrcode
+<br>
 import PySimpleGUI as sg
+<br>
 from PIL import Image
+<br>
 import io
+<br>
 import os
+<br>
 from tkinter import colorchooser
+<br>
 
 def create_qr_code(text, qr_color, back_color="white", logo_path=None):
+<br>
     qr = qrcode.QRCode(
+    <br>
         version=1,
+        <br>
         error_correction=qrcode.constants.ERROR_CORRECT_H,
         box_size=10,
+        <br>
         border=4,
+        <br>
     )
+    <br>
     qr.add_data(text)
+    <br>
     qr.make(fit=True)
+    <br>
 
     img = qr.make_image(fill_color=qr_color, back_color=back_color).convert("RGBA")
-
+<br>
     if logo_path and os.path.isfile(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
         logo_width, logo_height = logo.size
